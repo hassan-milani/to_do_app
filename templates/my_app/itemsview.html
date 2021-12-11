@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+    <div class="col s4">
+        <table>
+        <thead>
+          <tr>
+              <th>To do</th>
+              <th>added_date</th>
+              <th> </th>
+          </tr>
+        </thead>
+
+
+        {% for todo_item in final_items %}
+            <tbody>
+            <tr>
+            <td>{{ todo_item.item }}</td>
+            <td>{{ todo_item.added_date }}</td>
+            <td>
+                <form action="delete-todo/{{ todo_item.id }}" method="post" class="col s12">
+                    {% csrf_token %}
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Delete</button>
+                </form>
+               </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+</div>
+{% endblock content %}
